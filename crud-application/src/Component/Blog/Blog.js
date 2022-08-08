@@ -1,29 +1,33 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export default function Blog() {
+export default function Blog({item}) {
 
 // console.log(item)
+const navigate = useNavigate();
 
-const handleclick = ()=>{
-
+const handleclick = (e)=>{
+  localStorage.setItem('selctedid', JSON.stringify(e))
+navigate(`/${item.id}`)
 
 }
 
   return (
-    <div>
+    <div  >
       <div>
-        {/* <img src={} alt='blogimg'/> */}
+        <img src={item.image} alt='blogimg'/>
       </div>
 
       <div>
-        {/* <h2>{item.title}</h2> */}
+        <h2>{item.title}</h2>
       </div>
 
       <div>
-        <button onClick={handleclick}>Details</button>
+        <button onClick={()=>handleclick(item.id)}>Details</button>
       </div>
 
 
+      <hr/>
     </div>
   )
 }
